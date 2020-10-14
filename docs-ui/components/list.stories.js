@@ -12,7 +12,7 @@ export default {
 export const Default = withInfo('Default message goes here')(() => (
   <React.Fragment>
     <div className="section">
-      <h2>Without Symbol</h2>
+      <h4>Without Symbol</h4>
       <List>
         <ListItem>Item 1</ListItem>
         <ListItem>Item 2</ListItem>
@@ -20,7 +20,7 @@ export const Default = withInfo('Default message goes here')(() => (
       </List>
     </div>
     <div className="section">
-      <h2>Bullet Symbol</h2>
+      <h4>Bullet Symbol</h4>
       <List symbol="bullet">
         <ListItem>Item 1</ListItem>
         <ListItem>Item 2</ListItem>
@@ -28,7 +28,7 @@ export const Default = withInfo('Default message goes here')(() => (
       </List>
     </div>
     <div className="section">
-      <h2>Custom Symbol</h2>
+      <h4>Custom Symbol</h4>
       <List symbol={<IconBusiness />}>
         <ListItem>Item 1</ListItem>
         <ListItem>Item 2</ListItem>
@@ -36,7 +36,7 @@ export const Default = withInfo('Default message goes here')(() => (
       </List>
     </div>
     <div className="section">
-      <h2>Multiple Custom Symbol</h2>
+      <h4>Multiple Custom Symbol</h4>
       <List>
         <ListItem icon={<IconTelescope />}>Item 1</ListItem>
         <ListItem icon={<IconLightning />}>Item 2</ListItem>
@@ -44,7 +44,7 @@ export const Default = withInfo('Default message goes here')(() => (
       </List>
     </div>
     <div className="section">
-      <h2>Numeric Symbol</h2>
+      <h3>Numeric Symbol</h3>
       <List symbol="numeric">
         <ListItem>Item 1</ListItem>
         <ListItem>Item 2</ListItem>
@@ -52,7 +52,7 @@ export const Default = withInfo('Default message goes here')(() => (
       </List>
     </div>
     <div className="section">
-      <h2>Colored Numeric Symbol</h2>
+      <h4>Colored Numeric Symbol</h4>
       <List symbol="colored-numeric">
         <ListItem>Item 1</ListItem>
         <ListItem>Item 2</ListItem>
