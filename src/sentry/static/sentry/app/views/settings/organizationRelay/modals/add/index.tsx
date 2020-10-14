@@ -3,7 +3,8 @@ import styled from '@emotion/styled';
 
 import {t, tct} from 'app/locale';
 import ExternalLink from 'app/components/links/externalLink';
-import {OrderedList} from 'app/components/list';
+import List from 'app/components/list';
+import ListItem from 'app/components/list/listItem';
 import space from 'app/styles/space';
 
 import ModalManager from '../modalManager';
@@ -28,52 +29,48 @@ class Add extends ModalManager {
 
   getContent() {
     return (
-      <StyledOrderedList>
-        <Item
-          title={tct('Initialize the configuration. [link: Learn how]', {
-            link: (
-              <ExternalLink href="https://docs.sentry.io/product/relay/getting-started/#initializing-configuration" />
-            ),
-          })}
-          subtitle={t('Within your terminal:')}
-        >
-          <Terminal command="relay config init" />
-        </Item>
-        <Item
-          title={tct(
-            'Go to the file [jsonFile: credentials.json] to find the public key and enter it below.',
-            {
-              jsonFile: (
-                <CredentialsLink href="https://docs.sentry.io/product/relay/getting-started/#registering-relay-with-sentry" />
+      <StyledList symbol="colored-numeric">
+        <StyledListItem>
+          <Item
+            title={tct('Initialize the configuration. [link: Learn how]', {
+              link: (
+                <ExternalLink href="https://docs.sentry.io/product/relay/getting-started/#initializing-configuration" />
               ),
-            }
-          )}
-        >
-          {super.getForm()}
-        </Item>
-      </StyledOrderedList>
+            })}
+            subtitle={t('Within your terminal:')}
+          >
+            <Terminal command="relay config init" />
+          </Item>
+        </StyledListItem>
+        <StyledListItem>
+          <Item
+            title={tct(
+              'Go to the file [jsonFile: credentials.json] to find the public key and enter it below.',
+              {
+                jsonFile: (
+                  <CredentialsLink href="https://docs.sentry.io/product/relay/getting-started/#registering-relay-with-sentry" />
+                ),
+              }
+            )}
+          >
+            {super.getForm()}
+          </Item>
+        </StyledListItem>
+      </StyledList>
     );
   }
 }
 
 export default Add;
 
-// TODO(Priscila): Refactor the component List so that it is easier to customize numeric bullets
-const StyledOrderedList = styled(OrderedList)`
-  ol& {
-    display: grid;
-    grid-gap: ${space(3)};
-    margin-bottom: 0;
-    > li :before {
-      width: 24px;
-      height: 24px;
-      font-size: ${p => p.theme.fontSizeSmall};
-      background-color: ${p => p.theme.yellow400};
-      border: none;
-      top: 0px;
-      font-weight: 500;
-    }
-  }
+const StyledList = styled(List)`
+  display: grid;
+  grid-gap: ${space(3)};
+`;
+
+const StyledListItem = styled(ListItem)`
+  display: grid;
+  grid-gap: ${space(1.5)};
 `;
 
 const CredentialsLink = styled(ExternalLink)`
