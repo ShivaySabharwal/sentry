@@ -38,9 +38,9 @@ export const Default = withInfo('Default message goes here')(() => (
     <div className="section">
       <h4>Multiple Custom Symbol</h4>
       <List>
-        <ListItem icon={<IconTelescope />}>Item 1</ListItem>
-        <ListItem icon={<IconLightning />}>Item 2</ListItem>
-        <ListItem icon={<IconSiren />}>Item 3</ListItem>
+        <ListItem symbol={<IconTelescope />}>Item 1</ListItem>
+        <ListItem symbol={<IconLightning />}>Item 2</ListItem>
+        <ListItem symbol={<IconSiren />}>Item 3</ListItem>
       </List>
     </div>
     <div className="section">

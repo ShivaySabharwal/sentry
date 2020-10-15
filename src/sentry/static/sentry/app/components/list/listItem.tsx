@@ -4,13 +4,13 @@ import styled from '@emotion/styled';
 type Props = {
   component?: React.ElementType;
   children?: React.ReactNode;
-  icon?: React.ReactNode;
+  symbol?: React.ReactNode;
   className?: string;
 };
 
-const ListItem = ({className, component = 'li', children, icon}: Props) => (
-  <Wrapper className={className} component={component} icon={icon}>
-    {icon && <IconWrapper>{icon}</IconWrapper>}
+const ListItem = ({className, component = 'li', children, symbol}: Props) => (
+  <Wrapper className={className} component={component} symbol={symbol}>
+    {symbol && <Symbol>{symbol}</Symbol>}
     {children}
   </Wrapper>
 );
@@ -22,15 +22,15 @@ const Wrapper = styled(
     children,
     className,
   }: Required<Pick<Props, 'component'>> &
-    Pick<Props, 'className' | 'children' | 'icon'>) => (
+    Pick<Props, 'className' | 'children' | 'symbol'>) => (
     <Component className={className}>{children}</Component>
   )
 )`
   position: relative;
-  ${p => p.icon && `padding-left: 34px;`}
+  ${p => p.symbol && `padding-left: 34px;`}
 `;
 
-const IconWrapper = styled('div')`
+const Symbol = styled('div')`
   display: flex;
   align-items: center;
   position: absolute;
