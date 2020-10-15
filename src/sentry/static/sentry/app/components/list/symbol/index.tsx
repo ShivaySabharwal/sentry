@@ -4,6 +4,7 @@ import Numeric from './numeric';
 import Bullet from './bullet';
 
 type SymbolType = 'bullet' | 'numeric' | 'colored-numeric';
+
 type Props = {
   symbol: SymbolType | React.ReactElement;
   index: number;
