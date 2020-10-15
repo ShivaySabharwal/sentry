@@ -12,6 +12,7 @@ const Numeric = ({children, isSolid, className}: Props) => (
     {children}
   </Wrapper>
 );
+
 export default Numeric;
 
 const Wrapper = styled('div')<{isSolid?: boolean}>`
