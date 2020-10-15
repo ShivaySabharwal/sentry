@@ -6,6 +6,7 @@ type Props = {
 };
 
 const Bullet = ({className}: Props) => <Wrapper className={className} />;
+
 export default Bullet;
 
 const Wrapper = styled('div')`
