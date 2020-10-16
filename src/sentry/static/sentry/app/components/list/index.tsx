@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from '@emotion/styled';
+import {css} from '@emotion/core';
 
 import space from 'app/styles/space';
 
@@ -14,8 +14,21 @@ type Props = {
   className?: string;
 };
 
-const List = ({component = 'ul', children, className, symbol}: Props) => {
-  const getRootComponent = () => {
+const styles = css`
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-gap: ${space(0.5)};
+`;
+
+const List = ({
+  component = 'ul',
+  children,
+  className,
+  symbol,
+}: Props): React.ReactElement => {
+  const getWrapperComponent = () => {
     if (component !== 'ul') {
       return component;
     }
@@ -28,10 +41,10 @@ const List = ({component = 'ul', children, className, symbol}: Props) => {
     }
   };
 
-  const rootComponent = getRootComponent();
+  const Wrapper = getWrapperComponent();
 
   return (
-    <Wrapper className={className} component={rootComponent}>
+    <Wrapper className={className} css={styles}>
       {!symbol
         ? children
         : React.Children.map(children, (child, index) => {
@@ -39,7 +52,7 @@ const List = ({component = 'ul', children, className, symbol}: Props) => {
               return child;
             }
             return React.cloneElement(child as React.ReactElement, {
-              icon: <Symbol symbol={symbol} index={index + 1} />,
+              symbol: <Symbol symbol={symbol} index={index + 1} />,
             });
           })}
     </Wrapper>
@@ -47,19 +60,3 @@ const List = ({component = 'ul', children, className, symbol}: Props) => {
 };
 
 export default List;
-
-const Wrapper = styled(
-  ({
-    component: Component,
-    children,
-    className,
-  }: Required<Pick<Props, 'component'>> & Pick<Props, 'className' | 'children'>) => (
-    <Component className={className}>{children}</Component>
-  )
-)`
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  display: grid;
-  grid-gap: ${space(0.5)};
-`;

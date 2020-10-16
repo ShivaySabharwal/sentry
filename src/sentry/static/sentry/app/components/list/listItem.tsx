@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import {css} from '@emotion/core';
 
 type Props = {
   component?: React.ElementType;
@@ -8,27 +9,18 @@ type Props = {
   className?: string;
 };
 
-const ListItem = ({className, component = 'li', children, symbol}: Props) => (
-  <Wrapper className={className} component={component} symbol={symbol}>
+const styles = (symbol?: React.ReactNode) => css`
+  position: relative;
+  ${symbol && `padding-left: 34px;`}
+`;
+
+const ListItem = ({className, component: Component = 'li', children, symbol}: Props) => (
+  <Component className={className} symbol={symbol} css={styles}>
     {symbol && <Symbol>{symbol}</Symbol>}
     {children}
-  </Wrapper>
+  </Component>
 );
 export default ListItem;
-
-const Wrapper = styled(
-  ({
-    component: Component,
-    children,
-    className,
-  }: Required<Pick<Props, 'component'>> &
-    Pick<Props, 'className' | 'children' | 'symbol'>) => (
-    <Component className={className}>{children}</Component>
-  )
-)`
-  position: relative;
-  ${p => p.symbol && `padding-left: 34px;`}
-`;
 
 const Symbol = styled('div')`
   display: flex;
