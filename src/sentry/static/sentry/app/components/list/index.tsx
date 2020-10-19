@@ -1,62 +1,53 @@
 import React from 'react';
-import {css} from '@emotion/core';
+import styled from '@emotion/styled';
 
 import space from 'app/styles/space';
 
-import Symbol from './symbol';
-
-type SymbolType = React.ComponentProps<typeof Symbol>['symbol'];
+import {getListSymbolStyle, listSymbol} from './utils';
 
 type Props = {
   children: Array<React.ReactElement>;
-  symbol?: SymbolType;
-  component?: React.ElementType;
+  symbol?: keyof typeof listSymbol | React.ReactElement;
   className?: string;
 };
 
-const styles = css`
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  display: grid;
-  grid-gap: ${space(0.5)};
-`;
-
-const List = ({
-  component = 'ul',
-  children,
-  className,
-  symbol,
-}: Props): React.ReactElement => {
+const List = styled(({children, className, symbol}: Props) => {
   const getWrapperComponent = () => {
-    if (component !== 'ul') {
-      return component;
-    }
     switch (symbol) {
       case 'numeric':
       case 'colored-numeric':
         return 'ol';
       default:
-        return component;
+        return 'ul';
     }
   };
 
   const Wrapper = getWrapperComponent();
 
   return (
-    <Wrapper className={className} css={styles}>
-      {!symbol
+    <Wrapper className={className}>
+      {!symbol || typeof symbol === 'string'
         ? children
-        : React.Children.map(children, (child, index) => {
+        : React.Children.map(children, child => {
             if (!React.isValidElement(child)) {
               return child;
             }
             return React.cloneElement(child as React.ReactElement, {
-              symbol: <Symbol symbol={symbol} index={index + 1} />,
+              symbol,
             });
           })}
     </Wrapper>
   );
-};
+})`
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-gap: ${space(0.5)};
+  ${p =>
+    typeof p.symbol === 'string' &&
+    listSymbol[p.symbol] &&
+    getListSymbolStyle(p.theme, p.symbol)}
+`;
 
 export default List;

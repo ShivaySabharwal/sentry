@@ -8,7 +8,6 @@ import {Meta, MetaError} from 'app/types';
 import space from 'app/styles/space';
 import List from 'app/components/list';
 import ListItem from 'app/components/list/listItem';
-import Bullet from 'app/components/list/symbol/bullet';
 
 import {getTooltipText} from './utils';
 import ValueElement from './valueElement';
@@ -61,11 +60,11 @@ const AnnotatedText = ({value, meta, ...props}: Props) => {
             <strong>
               {tn('Processing Error:', 'Processing Errors:', errors.length)}
             </strong>
-            <List symbol={<StyledBullet />}>
+            <StyledList symbol="bullet">
               {errors.map((error, index) => (
                 <StyledListItem key={index}>{getErrorMessage(error)}</StyledListItem>
               ))}
-            </List>
+            </StyledList>
           </TooltipTitle>
         }
       >
@@ -93,8 +92,10 @@ const StyledListItem = styled(ListItem)`
   }
 `;
 
-const StyledBullet = styled(Bullet)`
-  border-color: ${p => p.theme.white};
+const StyledList = styled(List)`
+  li:before {
+    border-color: ${p => p.theme.white};
+  }
 `;
 
 const TooltipTitle = styled('div')`
