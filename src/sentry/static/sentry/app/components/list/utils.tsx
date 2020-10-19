@@ -59,6 +59,7 @@ export const listSymbol = {
   'colored-numeric': 'colored-numeric',
   bullet: 'bullet',
 };
+
 export function getListSymbolStyle(theme: Theme, symbol: keyof typeof listSymbol) {
   switch (symbol) {
     case 'numeric':
