@@ -53,6 +53,7 @@ const numericStyle = (theme: Theme, isSolid = false) => css`
   }
   counter-reset: numberedList;
 `;
+
 export const listSymbol = {
   numeric: 'numeric',
   'colored-numeric': 'colored-numeric',
